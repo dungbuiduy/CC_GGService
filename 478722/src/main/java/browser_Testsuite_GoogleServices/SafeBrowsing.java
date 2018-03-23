@@ -118,8 +118,8 @@ EN : "Potential malware."
 			s.click();
 			s.type("coccoc://extensions/");
 		    s.type(Key.ENTER);
-		    waitForObjectPresent("pictures\\Browser_ExtensionPage__icon_Savior.png", 7);
-			clickOn("pictures\\Browser_ExtensionPage__icon_Savior.png");
+		    waitForObjectPresent("pictures\\Browser_ExtensionPage_icon_Savior.png", 7);
+			clickOn("pictures\\Browser_ExtensionPage_icon_Savior.png");
 			int i= 1;
 			do 
 			{

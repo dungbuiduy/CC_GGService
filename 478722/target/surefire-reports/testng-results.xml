@@ -2,16 +2,20 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="CocCoc Smoke" duration-ms="166053" started-at="2018-02-08T11:40:24Z" finished-at="2018-02-08T11:43:10Z">
+  <suite name="CocCoc Smoke" duration-ms="213913" started-at="2018-03-15T10:26:33Z" finished-at="2018-03-15T10:30:07Z">
     <groups>
     </groups>
-    <test name="CocCoc Smoke" duration-ms="166053" started-at="2018-02-08T11:40:24Z" finished-at="2018-02-08T11:43:10Z">
-      <class name="browser_Testsuite_GoogleServices.DownloadCocCoc">
-        <test-method status="PASS" signature="Google_services_download_01_02()[pri:0, instance:browser_Testsuite_GoogleServices.DownloadCocCoc@dc24521]" name="Google_services_download_01_02" duration-ms="166042" started-at="2018-02-08T18:40:24Z" finished-at="2018-02-08T18:43:10Z">
+    <test name="CocCoc Smoke" duration-ms="213913" started-at="2018-03-15T10:26:33Z" finished-at="2018-03-15T10:30:07Z">
+      <class name="browser_Testsuite_GoogleServices.GoogleCalendar">
+        <test-method status="PASS" signature="GoogleServices_GoogleCalendar_CheckLoginBefore()[pri:0, instance:browser_Testsuite_GoogleServices.GoogleCalendar@694e1548]" name="GoogleServices_GoogleCalendar_CheckLoginBefore" is-config="true" duration-ms="38641" started-at="2018-03-15T17:26:33Z" finished-at="2018-03-15T17:27:12Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Google_services_download_01_02 -->
-      </class> <!-- browser_Testsuite_GoogleServices.DownloadCocCoc -->
+        </test-method> <!-- GoogleServices_GoogleCalendar_CheckLoginBefore -->
+        <test-method status="PASS" signature="GoogleServices_GoogleCalendar()[pri:0, instance:browser_Testsuite_GoogleServices.GoogleCalendar@694e1548]" name="GoogleServices_GoogleCalendar" duration-ms="175261" started-at="2018-03-15T17:27:12Z" finished-at="2018-03-15T17:30:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GoogleServices_GoogleCalendar -->
+      </class> <!-- browser_Testsuite_GoogleServices.GoogleCalendar -->
     </test> <!-- CocCoc Smoke -->
   </suite> <!-- CocCoc Smoke -->
 </testng-results>

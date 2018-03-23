@@ -73,9 +73,14 @@ public class BrowserCommon extends BrowserFramework {
 	
 	public String userprofile = System.getenv("USERPROFILE");
 	public String localUserdata = System.getenv("LOCALAPPDATA"); // For example: C:\Users\Huy\AppData\Local
-	public String[] CocCocVersion = getCocCocVersion("config\\coccocVersion.txt");
+//	public String[] CocCocVersion = getCocCocVersion("config\\coccocVersion.txt");
+	public static String[] CocCocVersion = {};
+	
 
 	public BrowserCommon() {
+		if(CocCocVersion.length==0) {
+			CocCocVersion = getCocCocVersion("config\\coccocVersion.txt");
+		}
 	}
 
 	/*-------------------------------------------------------------------------

@@ -44,7 +44,6 @@ public class DownloadCocCoc extends BrowserCommon{
 		TestLogger.info("===> Google_services_download_01_02 ====");
 		s.type("d", Key.WIN);
 		startUninstallCocCoc(true);
-		
 		TestLogger.info("1. Open any CocCoc website on Chrome browser (http://coccoc.com)");
 		doubleClick("pictures\\BrowserChrome_Desktop_icon_Chrome.png");
 		sleep(5);
@@ -81,7 +80,6 @@ public class DownloadCocCoc extends BrowserCommon{
 		
 		TestLogger.info("#5. User can install CocCoc browser with file was download");
 		sleep(15);
-		//Add waitForObjectPresent for download and install CC Browser
 		waitForObjectPresent("pictures\\Browser_InstallDialog_DownloadComplete.png", 180);
 		waitForObjectPresent("pictures\\Browser_InstallDialog_Installing.png", 30);
 		waitForObjectPresent("pictures\\Browser_InstallDialog_ShowInstallComplete.png", 5);
@@ -102,7 +100,8 @@ public class DownloadCocCoc extends BrowserCommon{
 				clickOn("pictures\\Browser_InstallComplete_PopupTranslate_Button_Nope.png");
 			}
 			else {
-				System.out.println("Don't show Search Internet and Translate popup");
+				setTestcaseStatus("PASSED", "PASSED => #5. User can install CocCoc browser with file was download but they don't show popup ");
+	
 			}
 						
 			setTestcaseStatus("PASSED", "PASSED => #5. User can install CocCoc browser with file was download");

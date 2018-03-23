@@ -9,8 +9,9 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="browser_Testsuite_GoogleServices.DownloadCocCoc"/>
+			<class name="browser_Testsuite_GoogleServices.GoogleCalendar"/>
 			<!-- 
+			<class name="browser_Testsuite_GoogleServices.DownloadCocCoc"/>
 			<class name="browser_Testsuite_GoogleServices.Geolocation"/>
 			<class name="browser_Testsuite_GoogleServices.GoogleCalendar"/>
 			<class name="browser_Testsuite_GoogleServices.GoogleDrive"/>
@@ -19,14 +20,11 @@
 			<class name="browser_Testsuite_GoogleServices.OtherServices"/>
 			<class name="browser_Testsuite_GoogleServices.SafeBrowsing"/>
 			<class name="browser_Testsuite_GoogleServices.SigninAndSyn"/>
+			-->
+			<!-- 
 			<class name="browser_Testsuite_GoogleServices.WebpagesTranslation"/>
 			<class name="browser_Testsuite_GoogleServices.Youtube"/>
 			 -->
-			<!-- 
-      		<class name="browser_Testsuite_Windows.Browser_Windows_Install"/>
-			<class name="browser_Testsuite_Windows.Browser_Windows_Update"/>
-			<class name="browser_Testsuite_Windows.Browser_Windows_Uninstall"/>
-			 /-->
 		</classes>
 	</test> 
 </suite>
