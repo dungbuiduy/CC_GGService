@@ -367,7 +367,7 @@ public class BrowserCommon extends BrowserFramework {
 		waitForObjectPresent("pictures\\Browser_Settings_Menu_User.png", 4);
 		// clickOn("pictures\\Browser_Settings_Menu_User.png");
 
-		TestLogger.info(". Click on 'Sign in to C?c C?c' ('Ðang nh?p vào C?c C?c') button.");
+		TestLogger.info(". Click on 'Sign in to Cốc Cốc' ('Ðăng nhập vào Cốc Cốc') button.");
 		waitForObjectPresent("pictures\\Browser_Settings_Button_Signintococcoc.png", 4);
 		clickOn("pictures\\Browser_Settings_Button_Signintococcoc.png");
 
@@ -4619,5 +4619,119 @@ public class BrowserCommon extends BrowserFramework {
 	// }
 	//
 	// }
-
+	
+	/**
+	 * Clear data browser by delete user's data
+	 * 
+	 * @author dung.buiduy
+	 **/
+	public void Delete_User_Account() {
+		//Open setting users page
+		openLink("coccoc://settings/#coccoc-settings-users"); 
+		waitForObjectPresent("pictures\\GoogleService_OtherSettigns_PersonAvailable.png", 3);
+		clickOn("pictures\\GoogleService_OtherSettigns_PersonAvailable.png");
+		waitForObjectPresent("pictures\\GoogleService_OtherSettigns_SelectPerson.png", 3);
+		s.type(Key.DELETE);
+		waitForObjectPresent("pictures\\GoogleService_OtherSettings_RemovePersonPopup1.png", 5);
+		clickOn("pictures\\GoogleService_OtherSettings_RemovePersonButton.png");
+		if (waitForObjectPresent("pictures\\GoogleService_OtherSettings_LogoAfterRemovePersonSuccessful.png", 5))
+		{
+			TestLogger.info("Remove person successfully");
+		}
+		 else{
+			 TestLogger.info("Failure to remove person");
+			 String homePath = System.getProperty("user.home") + "/Desktop/screenShot/";
+			 captureSnapshot(homePath, "DeleteUserFailed", 2);
+		}
+		sleep(3);
+	}
+	
+	/**
+	 * Open Coc Coc browser from Desktop
+	 * 
+	 * @author dung.buiduy
+	 **/
+	public void Open_CocCoc_Browser_From_Desktop () {
+		s.type("d", Key.WIN);
+		sleep(2);
+		s.type(Key.F5);
+//		if ((System.getProperty("os.name").contains("Windows 8.1"))
+//	    		|| (System.getProperty("os.name").contains("Windows 8"))) {
+//	   	s.type("desktop");
+//	   	s.type(Key.ENTER);
+//	  	}
+		if (waitForObjectPresent("pictures\\Browser_Icon_Picture_DesktopIcon.png", 2))   
+			doubleClick("pictures\\Browser_Icon_Picture_DesktopIcon.png");
+	    else
+			doubleClick("pictures\\Browser_Icon_Picture_DesktopIcon2.png");
+		if (waitForObjectPresent("pictures\\Browser_Icon_Menu_CoccocLogoOnBrowser.png", 5)) {
+			TestLogger.info("Start Coc Coc browser successfully");
+		} else {
+			TestLogger.info("Can't start Coc Coc browser");
+			String homePath = System.getProperty("user.home") + "/Desktop/screenShot/";
+			captureSnapshot(homePath, "StartCCFailed", 2);
+		}
+		sleep(3);
+	}
+	
+	/**
+	 * Checking login Gmail account before that
+	 * 
+	 * @author dung.buiduy
+	 **/
+	public void Check_Login_Gmail_Account (String accountTest, String passTest) {
+		openLink("https://google.com.vn");
+		waitForObjectPresent("pictures\\Browser_Translate_popup_TranslatePageEN.png", 5);
+		clickOn("pictures\\Browser_Translate_button_NopeEN.png");
+		sleep(2);
+		if (waitForObjectPresent("pictures\\Website_Google_button_LoginGoogleVN.png", 5)) {
+				clickOn("pictures\\Website_Google_button_LoginGoogleVN.png");
+				sleep(2);
+				s.type(accountTest);
+				sleep(2);
+				s.type(Key.ENTER);
+				sleep(2);
+				s.type(passTest);
+				sleep(1);
+				s.type(Key.ENTER);
+				sleep(2);
+				waitForObjectPresent("pictures\\Browser_SaveInfor_button_SavePass.png", 5);
+				clickOn("pictures\\Browser_SaveInfor_button_SavePass.png");
+				TestLogger.info("--------------------------------------------------------------------------------------------");
+				TestLogger.info("Login Google Account successfully");
+				TestLogger.info("--------------------------------------------------------------------------------------------");
+		} else {
+			sleep(2);
+			TestLogger.info("--------------------------------------------------------------------------------------------");
+			TestLogger.info("Google Account had logged-in successfully before");
+			TestLogger.info("--------------------------------------------------------------------------------------------");
+			String homePath = System.getProperty("user.home") + "/Desktop/screenShot/";
+			captureSnapshot(homePath, "LoginGmailAccountFailed", 2);
+		}
+		sleep(3);
+	
+	}
+	
+	public void Check_CCBrowser_available_to_work() {
+		if (waitForObjectPresent("pictures\\Browser_Icon_Menu_CoccocLogoOnBrowser.png", 3)) {
+			TestLogger.info("Keep working with Coc Coc browser => Next case");		
+		} else {
+			String homePath = System.getProperty("user.home") + "/Desktop/screenShot/";
+			captureSnapshot(homePath, "CocCocNotWork", 2);
+			s.type(Key.F4, Key.ALT);
+			sleep(2);
+			s.type("d", Key.WIN);
+			s.type(Key.F5);
+//			if ((System.getProperty("os.name").contains("Windows 8.1"))
+//		    		|| (System.getProperty("os.name").contains("Windows 8"))) {
+//		   	s.type("desktop");
+//		   	s.type(Key.ENTER);
+//		  	}
+			if (waitForObjectPresent("pictures\\Browser_Icon_Picture_DesktopIcon.png", 2))   
+				doubleClick("pictures\\Browser_Icon_Picture_DesktopIcon.png");
+		    else
+				doubleClick("pictures\\Browser_Icon_Picture_DesktopIcon2.png");
+		}
+		sleep(3);
+	}
 }

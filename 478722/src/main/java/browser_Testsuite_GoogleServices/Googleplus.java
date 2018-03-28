@@ -5,170 +5,223 @@ import org.testng.annotations.Test;
 
 import browser_Framework.BrowserCommon;
 import browser_Framework.TestLogger;
+import browser_Framework.BrowserFramework;
 
 public class Googleplus extends BrowserCommon {
-  
-	
-	   
-	@Test
-	public void GoogleServices_Googleplus_01()
-	   {
-		   TestLogger.info("Verify that user can access to Google plus page after login on Gmail page without relogin ");
-		   startCocCocInEnglish();
-		   SigninToCocCoc(userNameGmail4, passwordGmail4); 
-		   closeBrowser();
-		   startCocCoc();
-		   
-		   openLink("https://plus.google.com/?hl=vi");
-		   if (waitForObjectPresent("pictures\\website_googleplus_image_logo.png", 5) || (waitForObjectPresent("pictures\\Website_Googleplus_menu_profile.png", 5)))
-		   {
-			  setTestcaseStatus("PASSED", "showed logo Google + and avatar of user");   
-		   }
-		   else
-		   {
-			   setTestcaseStatus("FAILED", "DO NOT show logo Google + and avatar of user ");
-		   }
-		   
-		   
-		   //exit browser
-			closeBrowser();
-	   }
-	
-	@Test
-	public void GoogleServices_Googleplus_02()
-	{
-		TestLogger.info("Verify that user will be redirected to correct pages after clicking on menus on the left");
-		startCocCoc();
-		openLink("https://plus.google.com/?hl=vi");
-		TestLogger.info("2. Click on menus on the left");
-		TestLogger.info("User must be redirected to correct pages after click on menus"); 
-		TestLogger.info("Click on explore menu ");
-		clickOn("pictures\\website_googleplus_menu_explore.png");
-		if (waitForObjectPresent("pictures\\Website_GooglePlus_Popup_turnon.png", 5))
-		{
-			clickOn("Website_GooglePlus_Popup_turnon");
+	private boolean clickHomeFlag;
+	private boolean clickDiscoverFlag;
+
+	private void click_menu_Home() {
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		TestLogger.info("Click [Home] button");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		clickOn("pictures\\Website_GooglePlus_menu_Home.png");
+		if (waitForObjectPresent("pictures\\Website_GooglePlus_title_Home.png", 5)) {
+			setTestcaseStatus("PASSED", "User is redirected to correct [Home] page after clicking on the left menu");
+			clickHomeFlag = true;
+		} else {
+			setTestcaseStatus("FAILSE", "User is NOT redirected to correct [Home] page after clicking on the left menu");
 		}
-		
-		if (waitForObjectPresent("pictures\\Website_youtube_button_Allow.png", 3))
-		{
-			clickOn("pictures\\Website_youtube_button_Allow.png");
-		}
-		
-		if (waitForObjectPresent("pictures\\specificEnviroment\\win10\\website_googleplus_text_explore.png", 5))
-		{
-			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on Explore menu ");
-		}
-		else
-		{
-			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on Explore menu");
-		}
-		
-		TestLogger.info("click on Community menu");
-		clickOn("pictures\\website_googleplus_menu_community.png");
-		if (waitForObjectPresent("pictures\\website_googleplus_text_community.png", 5))
-		{
-			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on Community menu");
-		}
-		else
-		{
-			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on Community menu");
-		}
-		
-		        //exit browser
-				clickOn("pictures\\Browser_AddressBar_icon_SaviorDisabled.png");
-				sleep (2);
-				s.type(Key.F4, Key.ALT);
+		sleep(3);
 	}
-	
-	
-	
-	@Test 
-	public void GoogleServices_Googleplus_03()
-	{ 
+	private void click_menu_Discover() {
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		TestLogger.info("Click [Discover] button");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		clickOn("pictures\\Website_GooglePlus_menu_Discover.png");
+		if (waitForObjectPresent("pictures\\Website_GooglePlus_title_Discover.png", 5)) {
+			setTestcaseStatus("PASSED", "User is redirected to correct [Discover] page after clicking on the left menu");
+			clickDiscoverFlag = true;
+		} else {
+			setTestcaseStatus("FAILSE", "User is NOT redirected to correct [Discover] page after clicking on the left menu");
+		}
+		sleep(3);
+	}
+
+	private void post_status() {
+		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Verify that user can post status successfully on Google Plus");
-		startCocCoc();
-		openLink("https://plus.google.com/?hl=vi");
-		sleep (12);
-		TestLogger.info(" Post a status on page");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
 		clickOn("pictures\\Website_Googleplus_TextFiled_postStatus.png");
 		sleep (3);
-		s.type("Today is 23/8/2017") ;
+		s.type("Today is a beautiful day") ;
 		clickOn("pictures\\Website_GooglePlus_button_Post.png");
-		if (waitForObjectPresent("pictures\\Website_Googleplus_text_post.png", 6))
-		{
-			setTestcaseStatus("PASSED",  "user can post status successfully on Google Plus");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		TestLogger.info("Post a status on page");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		if (waitForObjectPresent("pictures\\Website_GooglePlus_text_Status.png", 10)){
+			setTestcaseStatus("PASSED",  "User can post status successfully on Google Plus");
+		} else {
+			setTestcaseStatus("FAILED",  "User can NOT post status successfully on Google Plus");
 		}
-		else
-		{
-			setTestcaseStatus("FAILED",  "user can NOT post status successfully on Google Plus");
-		}
-		
-		 //exit browser
-		clickOn("pictures\\Browser_AddressBar_icon_SaviorDisabled.png");
-		sleep (2);
-		s.type(Key.F4, Key.ALT);
-	
-		
-	} 
-	
-	
-	@Test 
-	public void GoogleServices_Googleplus_04()
-	{ 
+		sleep(3);
+	}
+	private void edit_status() {
+		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Verify that user can Edit status successfully on Google Plus");
-		startCocCoc();
-		openLink("https://plus.google.com/?hl=vi");
-		TestLogger.info(" Edit a status on page");
-		if (waitForObjectPresent("pictures\\Website_Googleplus_text_post.png", 5))
-		{
-			clickOn("pictures\\Website_Googleplus_text_post.png");
-			clickOn("pictures\\Website_Googleplus_token_3dot.png");
-			clickOn("pictures\\Website_Googleplus_menu_Editpost.png");
-			s.type("Editted"); 
-			clickOn("pictures\\Website_Googleplus_menu_Save.png");
-			if (waitForObjectPresent("pictures\\Website_Googleplus_text_Editted.png", 5))
-			{
-				setTestcaseStatus("PASSED", "User can Edit status successfully on Google Plus");
-			}
-			else
-			{
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		hoverImage("pictures\\Website_GooglePlus_text_Status.png");
+		sleep(1);
+		clickOn("pictures\\Website_GooglePlus_menu_EditPost.png");
+		if (waitForObjectPresent("pictures\\Website_GooglePlus_menu_listEditPost.png", 5)) {
+			sleep(1);
+			TestLogger.info("--------------------------------------------------------------------------------------------");
+			TestLogger.info("Edit a status on page");
+			TestLogger.info("--------------------------------------------------------------------------------------------");
+			clickOn("pictures\\Website_GooglePlus_subMenu_EditPost.png");
+			sleep(2);
+			s.type("a", Key.CTRL);
+			s.type("Today is a bad day");
+			clickOn("pictures\\Website_GooglePlus_button_SaveEditPost.png");
+			if (waitForObjectPresent("pictures\\Website_GooglePlus_text_StatusEditedOK.png", 5)) {
+				setTestcaseStatus("PASSED", "User edited status successfully on Google Plus");
+			} else {
 				setTestcaseStatus("FAILED", "User can NOT Edit status successfully on Google Plus");
 			}
-			
+		} else {
+			setTestcaseStatus("FAILED", "User can NOT open Edit menu on Google Plus");
 		}
-		
-		 //exit browser
-		closeBrowser();
-		s.type(Key.F4, Key.ALT);
+		sleep(3);
 	}
-	
-	@Test 
-	public void GoogleServices_Googleplus_05()
-	{
+	private void delete_status() {
+		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Verify that user can Delete status successfully on Google Plus");
-		startCocCoc();
-		openLink("https://plus.google.com/?hl=vi");
-		TestLogger.info("2. Choose a post to delete. ");
-		if (waitForObjectPresent("pictures\\Website_Googleplus_text_post.png", 5))
-		{
-			clickOn("pictures\\Website_Googleplus_text_post.png");
-			clickOn("pictures\\Website_Googleplus_token_3dot.png");
-			clickOn("pictures\\Website_Googleplus_menu_DeletePost.png");
-			clickOn("pictures\\Website_Googleplus_menu_Delete.png");
-			if (waitForObjectPresent("pictures\\Website_Googleplus_text_Editted.png", 5))
-			{
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		hoverImage("pictures\\Website_GooglePlus_text_StatusEditedOK.png");
+		sleep(1);
+		clickOn("pictures\\Website_GooglePlus_menu_EditPost.png");
+		if (waitForObjectPresent("pictures\\Website_GooglePlus_menu_listEditPost.png", 5)) {
+			sleep(1);
+			TestLogger.info("--------------------------------------------------------------------------------------------");
+			TestLogger.info("Choose a post to delete.");
+			TestLogger.info("--------------------------------------------------------------------------------------------");
+			clickOn("pictures\\Website_GooglePlus_subMenu_DeletePost.png");
+			sleep(2);
+			clickOn("pictures\\Website_GooglePlus_button_DeletePost.png");
+			if (waitforObjectNotexist("pictures\\Website_GooglePlus_text_StatusEditedOK.png", 5)) {
+				setTestcaseStatus("PASSED", "User deleted status successfully on Google Plus");
+			} else {
 				setTestcaseStatus("FAILED", "User can NOT delelte status successfully on Google Plus");
 			}
-			else
-			{
-				setTestcaseStatus("PASSED", "User can delete status successfully on Google Plus");
-			}
-			
-			
+		} else {
+			setTestcaseStatus("FAILED", "User can NOT open Edit menu on Google Plus");
 		}
-		
-		 //exit browser
-		closeBrowser();
-		s.type(Key.F4, Key.ALT);
+		sleep(3);
 	}
+		
+
+	@Test
+	public void GoogleService_GooglePlus() {
+		/**
+		* <b> Browser_GoogleServices_v1.1 </b> </br>
+		* <b> CaseID: </b> GoogleServices_Googleplus_01 </br>
+		* <b> CaseTitle: </b>Verify that user can access to Google plus page after login on Gmail page without relogin "</br>
+		* <b> Steps: </b>
+		*	1. Open Google Plus page (https://plus.google.com/?hl=vi)
+		*	2. Observe on Google Plus page
+		*  EXPECT : 
+	  	*	 #2: Must show logo Google + and avatar of user
+	  	*
+		* @author 
+		* @updaters: dung.buiduy
+		* @date: 2018/03/28
+		*/
+		TestLogger.info("===============================================================================================");
+		TestLogger.info("|                            << GoogleServices_Googleplus_01 >>                               |");
+		TestLogger.info("===============================================================================================");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		TestLogger.info("Verify that user can access to Google plus page after login on Gmail page without relogin ");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		Open_CocCoc_Browser_From_Desktop();
+		Delete_User_Account();
+		Check_Login_Gmail_Account("coccoc.test003@gmail.com", "browsertest003");
+		openLink("https://plus.google.com/?hl=vi");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		TestLogger.info("Observe on Google Plus page");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		sleep(3);
+		if (waitForObjectPresent("pictures\\Website_GooglePlus_popup_NotifyGoogle+.png", 5)) {
+			clickOn("pictures\\Website_GooglePlus_button_EnbalbeNotify.png");
+		}
+		sleep(2);
+		if (waitForObjectPresent("pictures\\Browser_GooglePlus_popup_DisplayNotify.png", 5)) {
+			clickOn("pictures\\Browser_GooglePlus_button_AllowNotification.png");
+		}
+		sleep(2);
+		if (waitForObjectPresent("pictures\\Website_GooglePlus_logo_Google+.png", 5)
+				&& waitForObjectPresent("pictures\\Website_Googleplus_menu_profile.png", 5)) {
+			setTestcaseStatus("PASSED", "It's showed logo Google + and avatar of user");
+		} else {
+			setTestcaseStatus("FAILED", "DO NOT show logo Google + and avatar of user");
+		}
+		sleep(3);
+		Check_CCBrowser_available_to_work();
+		/**
+		* <b> Browser_GoogleServices_v1.1 </b> </br>
+		* <b> CaseID: </b> GoogleServices_Googleplus_02 </br>
+		* <b> CaseTitle: </b>Verify that user will be redirect to correct pages after clicking on menus on the left"</br>
+		* <b> Steps: </b>
+		*	 1. Open Google Plus page (https://plus.google.com/?hl=vi)
+		*	 2. Click on menus on the left
+		*  EXPECT : 
+	  	*	 #2: User must be redirected to correct pages after click on menus 
+	  	*
+		* @author 
+		* @updaters: dung.buiduy
+		* @date: 2018/03/28
+		*/
+		TestLogger.info("===============================================================================================");
+		TestLogger.info("|                            << GoogleServices_Googleplus_02 >>                               |");
+		TestLogger.info("===============================================================================================");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		TestLogger.info("Verify that user will be redirect to correct pages after clicking on menus on the left ");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		openLink("https://plus.google.com/?hl=vi");
+		click_menu_Discover();
+		click_menu_Home();
+		if (clickHomeFlag && clickDiscoverFlag) {
+			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on the left menu ");
+		} else {
+			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on the left menu");
+		}
+		sleep(3);
+		Check_CCBrowser_available_to_work();
+		
+		/**
+		* <b> Browser_GoogleServices_v1.1 </b> </br>
+		* <b> CaseID: </b> GoogleServices_Googleplus_03&04&05 </br>
+		* <b> CaseTitle: </b>Verify that user can post/edit/delete status successfully on Google Plus</br>
+		* <b> Steps: </b>
+		*	 1. Open Google Plus page (https://plus.google.com/?hl=vi)
+		*	 2. Post a status on page
+		*	 3. Edit content on that post
+		*	 4. Delete that post
+		*  EXPECT : 
+	  	*	 #2: This status must be posted successflly and show on page right after. 
+	  	*	 #3: Must that that content must be updated after editting.
+	  	*	 #4: That post must be deleted successfully.
+	  	*
+		* @author 
+		* @updaters: dung.buiduy
+		* @date: 2018/03/28
+		*/
+		TestLogger.info("===============================================================================================");
+		TestLogger.info("|                         << GoogleServices_Googleplus_03&4&5 >>                              |");
+		TestLogger.info("===============================================================================================");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		TestLogger.info("Verify that user can post/edit/delete status successfully on Google Plus");
+		TestLogger.info("--------------------------------------------------------------------------------------------");
+		openLink("https://plus.google.com/?hl=vi");
+		sleep (15);
+		post_status();
+		edit_status();
+		delete_status();
+		
+		//Exit browser
+		 clickOn("pictures\\Browser_AddressBar_icon_SaviorDisabled.png");
+		 sleep (2);
+		 s.type("q", Key.CTRL + Key.SHIFT);
+		 s.type("d", Key.WIN);	
+	}	  
+	
 }
