@@ -241,7 +241,6 @@ public class Geolocation extends BrowserCommon {
             TestLogger.info("===============================================================================================");
             TestLogger.info("|                         << Google_services_Geolocation_04&05 >>                              |");
             TestLogger.info("===============================================================================================");
-            openLink("https://maps.google.com");
             Grant_Location_Access(false);
             Open_Geolocation_Exceptions(false);
     		clickOn("pictures\\Browser_GeolocationException_hostname_Google.png");
@@ -256,7 +255,7 @@ public class Geolocation extends BrowserCommon {
     		sleep(2);
     		s.type(Key.ENTER);
     		sleep(2);
-    		waitForObjectPresent("pictures\\Browser_Setting_title_SettingsPage.png", 3);
+    		//waitForObjectPresent("pictures\\Browser_Setting_title_SettingsPage.png", 3);
     		s.type("w", Key.CTRL);
     		sleep(2);
     		s.type(Key.F5);

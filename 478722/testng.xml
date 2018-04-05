@@ -9,7 +9,7 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="browser_Testsuite_GoogleServices.Geolocation"/>
+			<class name="browser_Testsuite_GoogleServices.GoogleCalendar"/>
 			<!-- 
 			<class name="browser_Testsuite_GoogleServices.DownloadCocCoc"/>
 			<class name="browser_Testsuite_GoogleServices.Geolocation"/>

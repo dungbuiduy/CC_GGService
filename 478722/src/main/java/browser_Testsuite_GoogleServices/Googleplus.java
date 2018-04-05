@@ -8,37 +8,39 @@ import browser_Framework.TestLogger;
 import browser_Framework.BrowserFramework;
 
 public class Googleplus extends BrowserCommon {
-	private boolean clickHomeFlag;
-	private boolean clickDiscoverFlag;
 
-	private void click_menu_Home() {
+	private boolean click_menu_Home() {
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Click [Home] button");
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		clickOn("pictures\\Website_GooglePlus_menu_Home.png");
 		if (waitForObjectPresent("pictures\\Website_GooglePlus_title_Home.png", 5)) {
 			setTestcaseStatus("PASSED", "User is redirected to correct [Home] page after clicking on the left menu");
-			clickHomeFlag = true;
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILSE", "User is NOT redirected to correct [Home] page after clicking on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(3);
 	}
-	private void click_menu_Discover() {
+	private boolean click_menu_Discover() {
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Click [Discover] button");
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		clickOn("pictures\\Website_GooglePlus_menu_Discover.png");
 		if (waitForObjectPresent("pictures\\Website_GooglePlus_title_Discover.png", 5)) {
 			setTestcaseStatus("PASSED", "User is redirected to correct [Discover] page after clicking on the left menu");
-			clickDiscoverFlag = true;
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILSE", "User is NOT redirected to correct [Discover] page after clicking on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(3);
 	}
 
-	private void post_status() {
+	private boolean post_status() {
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Verify that user can post status successfully on Google Plus");
 		TestLogger.info("--------------------------------------------------------------------------------------------");
@@ -51,12 +53,15 @@ public class Googleplus extends BrowserCommon {
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		if (waitForObjectPresent("pictures\\Website_GooglePlus_text_Status.png", 10)){
 			setTestcaseStatus("PASSED",  "User can post status successfully on Google Plus");
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILED",  "User can NOT post status successfully on Google Plus");
+			sleep(2);
+			return false;
 		}
-		sleep(3);
 	}
-	private void edit_status() {
+	private boolean edit_status() {
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Verify that user can Edit status successfully on Google Plus");
 		TestLogger.info("--------------------------------------------------------------------------------------------");
@@ -75,15 +80,19 @@ public class Googleplus extends BrowserCommon {
 			clickOn("pictures\\Website_GooglePlus_button_SaveEditPost.png");
 			if (waitForObjectPresent("pictures\\Website_GooglePlus_text_StatusEditedOK.png", 5)) {
 				setTestcaseStatus("PASSED", "User edited status successfully on Google Plus");
+				sleep(2);
+				return true;
 			} else {
 				setTestcaseStatus("FAILED", "User can NOT Edit status successfully on Google Plus");
+				sleep(2);
+				return false;
 			}
 		} else {
 			setTestcaseStatus("FAILED", "User can NOT open Edit menu on Google Plus");
+			return false;
 		}
-		sleep(3);
 	}
-	private void delete_status() {
+	private boolean delete_status() {
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Verify that user can Delete status successfully on Google Plus");
 		TestLogger.info("--------------------------------------------------------------------------------------------");
@@ -100,13 +109,18 @@ public class Googleplus extends BrowserCommon {
 			clickOn("pictures\\Website_GooglePlus_button_DeletePost.png");
 			if (waitforObjectNotexist("pictures\\Website_GooglePlus_text_StatusEditedOK.png", 5)) {
 				setTestcaseStatus("PASSED", "User deleted status successfully on Google Plus");
+				sleep(2);
+				return true;
 			} else {
 				setTestcaseStatus("FAILED", "User can NOT delelte status successfully on Google Plus");
+				sleep(2);
+				return false;
 			}
 		} else {
 			setTestcaseStatus("FAILED", "User can NOT open Edit menu on Google Plus");
+			sleep(2);
+			return false;
 		}
-		sleep(3);
 	}
 		
 
@@ -179,7 +193,7 @@ public class Googleplus extends BrowserCommon {
 		openLink("https://plus.google.com/?hl=vi");
 		click_menu_Discover();
 		click_menu_Home();
-		if (clickHomeFlag && clickDiscoverFlag) {
+		if (click_menu_Discover() && click_menu_Home()) {
 			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on the left menu ");
 		} else {
 			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on the left menu");

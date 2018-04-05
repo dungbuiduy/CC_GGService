@@ -7,73 +7,81 @@ import browser_Framework.BrowserCommon;
 import browser_Framework.TestLogger;
 
 public class GoogleDrive extends BrowserCommon {
-	private boolean clickComputersFlag;
-	private boolean clickSharedFlag;
-	private boolean clickRecentFlag;
-	private boolean clickStarredFlag;
-	private boolean clickTrashFlag;
 	
-	private void Click_Menu_Computers() {
+	private boolean Click_Menu_Computers() {
 		//Click on option [Computer]
 		clickOn("pictures\\Website_GoogleDrive_menu_ComputersVN.png");
 		sleep(2);
 		if (waitForObjectPresent("pictures\\Website_GoogleDrive_text_ComputersVN.png", 5)) {
 			setTestcaseStatus("PASSED", "Showed Computers page after click on [Computers] button on the left menu");
-			clickComputersFlag = true;
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILED", "Do NOT Show Commputers page after click on [Computers] button on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_SharedWithMe() {
+	private boolean Click_Menu_SharedWithMe() {
 		//Click on option [Shared with me]
 		clickOn("pictures\\Website_GoogleDrive_menu_SharedWithMeVN.png");
 		sleep(2);
 		if (waitForObjectPresent("pictures\\Website_GoogleDrive_text_SharedWithMeVN.png", 5)){
 			setTestcaseStatus("PASSED", "Showed Shared with me page after click on [Shared with me] button on the left menu");
-			clickSharedFlag = true;
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILED", "Do NOT show Shared with me page after click on [Shared with me] button on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_Recent() {
+	private boolean Click_Menu_Recent() {
 		//Click on option [Recent]
 		clickOn("pictures\\Website_GoogleDrive_menu_RecentVN.png");
 		sleep(2);
 		if (waitForObjectPresent("pictures\\Website_GoogleDrive_text_RecentVN.png", 5)) {
 			setTestcaseStatus("PASSED", "Showed Recent page after click on [Recent] button on the left menu");
-			clickRecentFlag = true;
+			sleep(2);
+			return true;
+			
 		} else {
 			setTestcaseStatus("FAILED", "Do NOT show Recent page after click on [Recent] button on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
+		
 	}
-	private void Click_Menu_Starred() {
+	private boolean Click_Menu_Starred() {
 		//Click on option [Starred]
 		clickOn("pictures\\Website_GoogleDrive_menu_StarredVN.png");
 		sleep(2);
 		if (waitForObjectPresent("pictures\\Website_GoogleDrive_text_StarredVN.png", 5)) {
 			setTestcaseStatus("PASSED", "Showed Starred page after click on [Start] button on the left menu");
-			clickStarredFlag = true;
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILED", "Do NOT show Starred page after click on");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_Trash() {
+	private boolean Click_Menu_Trash() {
 		//Click on option [Trash]
 		clickOn("pictures\\Website_GoogleDrive_menu_TrashVN.png");
 		sleep(2);
 		if (waitForObjectPresent("pictures\\Website_GoogleDrive_text_TrashVN.png", 5)) {
 			setTestcaseStatus("PASSED", "Showed Trash page after click on [Trash] button on the left menu");
-			clickTrashFlag = true;
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILED", "Do NOT show Trash page after click on [Trash] button on the left menu");
+			sleep(2);
+			return false;
 		}
 	}
 	
-	private void Upload_File_To_Drive() {
+	private boolean Upload_File_To_Drive() {
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
 		TestLogger.info("Click [New] button to Upload File");
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
@@ -102,12 +110,15 @@ public class GoogleDrive extends BrowserCommon {
 		if (waitForObjectPresent("pictures\\Website_GoogleDrive_thumbnail_UploadFileOK.png", 20) 
 				&& waitForObjectPresent("pictures\\Website_GoogleDrive_popup_UploadFileOK.png", 20) ) {
 			setTestcaseStatus("PASSED", "File is uploaded successfully");
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILED", "File is NOT uploaded successfully");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Edit_File_On_Drive() {
+	private boolean Edit_File_On_Drive() {
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
 		TestLogger.info("Choose file uploaded to edit");
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
@@ -122,10 +133,13 @@ public class GoogleDrive extends BrowserCommon {
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
 		if (waitForObjectPresent("pictures\\Website_GoogleDrive_thumbnail_RenameFile.png", 5)) {
 			setTestcaseStatus("PASSED", "Content and title of File is changed successfully");
+			sleep(2);
+			return true;
 		} else {
 			setTestcaseStatus("FAILED", "Content and title of File is NOT changed successfully");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
 	
 	@Test
@@ -194,7 +208,7 @@ public class GoogleDrive extends BrowserCommon {
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
 		TestLogger.info("1. Access on Google Drive page :  https://drive.google.com/drive/my-drive ");
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
-		clickOn("pictures\\Website_GoogleDrive_Button_AccessToGoogleDriveVN.png");
+		clickOn("pictures\\Website_GoogleDrive_Button_AccessToGoogleDriveEN.png");
 		sleep(2);
 		TestLogger.info("-----------------------------------------------------------------------------------------------");
 		TestLogger.info("2. Click on options on the left menu");
@@ -214,14 +228,16 @@ public class GoogleDrive extends BrowserCommon {
 		Click_Menu_Computers();
 		
 		//Check if all option is redirected exactly to page
-		if (clickComputersFlag
-				&& clickSharedFlag
-				&& clickRecentFlag
-				&& clickStarredFlag
-				&& clickTrashFlag) {
+		if (Click_Menu_Computers()
+				&& Click_Menu_Recent()
+				&& Click_Menu_SharedWithMe()
+				&& Click_Menu_Starred()
+				&& Click_Menu_Trash()) {
 			setTestcaseStatus("PASSED", "All option on left menu is showed exactly to page");
+			
 		} else {
 			setTestcaseStatus("FAILED", "Do NOT show correct pages after click on the left menu");
+			
 		}
 		sleep(2);
 		Check_CCBrowser_available_to_work();

@@ -7,78 +7,78 @@ import browser_Framework.BrowserCommon;
 import browser_Framework.TestLogger;
 
 public class GoogleNews extends BrowserCommon {
-	private boolean clickTopStoriesFlag;
-	private boolean clickWorldFlag;
-	private boolean clickVietnameseFlag;
-	private boolean clickBusinessFlag;
-	private boolean clickEntertaimentFlag;
-	private boolean clickSportsFlag;
 		
-	private void Click_Menu_TopStories() {
+	private boolean Click_Menu_TopStories() {
 		clickOn("pictures\\Website_GoogleNews_menu_TopStoriesNewsVN.png");
 		if (waitForObjectPresent("pictures\\Website_GoogleNews_title_TopStoriesNewsVN.png", 5)) {
-			clickTopStoriesFlag = true;
 			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on [Top Stories] option on the left menu");
+			sleep(2);
+			return true;
 		} else {
-			clickTopStoriesFlag = false;
 			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on [Top Stories] option on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_World() {
+	private boolean Click_Menu_World() {
 		clickOn("pictures\\Website_GoogleNews_menu_WorldNewsVN.png");
 		if (waitForObjectPresent("pictures\\Website_GoogleNews_title_WorldNewsVN.png", 5)) {
-			clickWorldFlag = true;
 			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on [World] option on the left menu");
+			sleep(2);
+			return true;
 		} else {
-			clickWorldFlag = false;
 			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on [World] option on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_Vietnamese() {
+	private boolean Click_Menu_Vietnamese() {
 		clickOn("pictures\\Website_GoogleNews_menu_VietnameseNewsVN.png");
 		if (waitForObjectPresent("pictures\\Website_GoogleNews_title_VietnameseNewsVN.png", 5)) {
-			clickVietnameseFlag = true;
 			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on [Vietnamese] option on the left menu");
+			sleep(2);
+			return true;
 		} else {
-			clickVietnameseFlag = false;
 			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on [Vietnamese] option on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_Business() {
+	private boolean Click_Menu_Business() {
 		clickOn("pictures\\Website_GoogleNews_menu_BusinessNewsVN.png");
 		if (waitForObjectPresent("pictures\\Website_GoogleNews_title_BusinessNewsVN.png", 5)) {
-			clickBusinessFlag = true;
 			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on [Business] option on the left menu");
+			sleep(2);
+			return true;
 		} else {
-			clickBusinessFlag = false;
 			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on [Business] option on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_Entertaiment() {
+	private boolean Click_Menu_Entertaiment() {
 		clickOn("pictures\\Website_GoogleNews_menu_EntertaimentNewsVN.png");
 		if (waitForObjectPresent("pictures\\Website_GoogleNews_title_EntertaimentNewsVN.png", 5)) {
-			clickEntertaimentFlag = true;
 			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on [Entertaiment] option on the left menu");
+			sleep(2);
+			return true;
 		} else {
-			clickEntertaimentFlag = false;
 			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on [Entertaiment] option on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
-	private void Click_Menu_Sports() {
+	private boolean Click_Menu_Sports() {
 		clickOn("pictures\\Website_GoogleNews_menu_SportsNewsVN.png");
 		if (waitForObjectPresent("pictures\\Website_GoogleNews_title_SportsNewsVN.png", 5)) {
-			clickSportsFlag = true;
 			setTestcaseStatus("PASSED", "User is redirected to correct pages after clicking on [Sports] option on the left menu");
+			sleep(2);
+			return true;
 		} else {
-			clickSportsFlag = false;
 			setTestcaseStatus("FAILED", "User is NOT redirected to correct pages after clicking on [Sports] option on the left menu");
+			sleep(2);
+			return false;
 		}
-		sleep(2);
 	}
 	
 	@Test
@@ -146,12 +146,12 @@ public class GoogleNews extends BrowserCommon {
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		TestLogger.info("Click on Options on the left menu. ");
 		TestLogger.info("EXPECT:  User must be redirected to correct page after clicking on options on the menus: \n"
-				+ "- Top Stories news\n"
-				+ "- World news\n"
-				+ "- Vietnamese news\n"
-				+ "- Business news\n"
-				+ "- Entertaiment news\n"
-				+ "- Sports news");
+				+ "\t - Top Stories news\n"
+				+ "\t - World news\n"
+				+ "\t - Vietnamese news\n"
+				+ "\t - Business news\n"
+				+ "\t - Entertaiment news\n"
+				+ "\t - Sports news");
 		TestLogger.info("--------------------------------------------------------------------------------------------");
 		Click_Menu_World();
 		Click_Menu_Vietnamese();
@@ -159,19 +159,19 @@ public class GoogleNews extends BrowserCommon {
 		Click_Menu_Entertaiment();
 		Click_Menu_Sports();
 		Click_Menu_TopStories();
-		if (clickTopStoriesFlag 
-				&& clickWorldFlag 
-				&& clickVietnameseFlag 
-				&& clickBusinessFlag 
-				&& clickEntertaimentFlag 
-				&& clickSportsFlag) {
+		if (Click_Menu_Business()
+				&& Click_Menu_Entertaiment()
+				&& Click_Menu_Sports()
+				&& Click_Menu_TopStories()
+				&& Click_Menu_Vietnamese()
+				&& Click_Menu_World()) {
 			setTestcaseStatus("PASSED", "User must be redirected to correct all page after clicking on options on the menus:\n"
-					+ "- Top Stories news\n"
-					+ "- World news\n"
-					+ "- Vietnamese news\n"
-					+ "- Business news\n"
-					+ "- Entertaiment news\n"
-					+ "- Sports news");
+					+ "\t - Top Stories news\n"
+					+ "\t - World news\n"
+					+ "\t - Vietnamese news\n"
+					+ "\t - Business news\n"
+					+ "\t - Entertaiment news\n"
+					+ "\t - Sports news");
 		} else {
 			setTestcaseStatus("FAILED", "User it NOT redirected to correct all page after clicking on options on the menus");
 			
